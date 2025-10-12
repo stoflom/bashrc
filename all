@@ -45,7 +45,7 @@ dus ()
     fi
 
     # Restore dotglob to its original state *only if* we set it
-    if [ $dotglob_status -eq 0 ] && [ "$dir" = "." ]; then
+    if [ $dotglob_status -eq 0 ] ; then
         shopt -u dotglob
     fi
     
