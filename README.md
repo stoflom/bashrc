@@ -1,11 +1,12 @@
-A few usefull bash scripts.
 
->dus  calculates the diskspace used by directories and files in the current directory, including hidden nodes.
->dus <path> does the same for the specified path.
+A few useful bash scripts.
 
->whence <cmd> shows the type, location and/or symbolic links defining cmd.
+```
+**dus** calculates the disk space used by directories and files in the current directory, including hidden nodes. **dus** *path* does the same for the specified path.
 
->logout (gnome speficif) logs the current user out and closes the gnome session.
+**whence** shows the type, location, and/or symbolic links defining **cmd**.
 
-All these (and some other shortcuts) are defined in file "all" which I drop in my ~/.basrc.d folder to be loaded when I log in on Fedora/Rocky/CentOS/RedHat etc.
+**logout** (GNOME specific) logs the current user out and closes the GNOME session.
+```
 
+**All** these (and some other shortcuts) are defined in the file **all. I drop this** into my `~/.bashrc.d` folder to be loaded when I log in to Fedora/Rocky/CentOS/RedHat etc.
