@@ -32,8 +32,4 @@ dus ()
         shopt -u dotglob
     fi
     
-    # NOTE: Because we ran the du command inside a subshell `( du -hs ... )`, 
-    # the shopt -s dotglob only applies to that subshell, so the explicit 
-    # shopt -u dotglob cleanup might not be strictly necessary, but it's 
-    # good practice if the function were changed to not use a subshell.
 }
