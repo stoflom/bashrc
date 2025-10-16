@@ -6,6 +6,8 @@ A few useful bash scripts.
 
 **whence** shows the type, location, and/or symbolic links defining **cmd**.
 
+**ffind** searches for a given file in the current directory hierarchy, symbolic links are followed.
+
 **logout** (GNOME specific) logs the current user out and closes the GNOME session.
 ```
 
