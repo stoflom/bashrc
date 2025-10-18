@@ -27,7 +27,7 @@ searches for a given filename fragment `*<name>` in the current directory hierar
 ```
 logout
 ```
-GNOME specific) logs the current user out and closes the GNOME session.
+(GNOME specific) logs the current user out and closes the GNOME session.
 
 
 All these (and some other shortcuts) are defined in the file `all`. I drop this in my `~/.bashrc.d` folder to be loaded when I log in to Fedora/Rocky/CentOS/RedHat etc.
