@@ -1,0 +1,76 @@
+
+# Load Angular CLI autocompletion.
+#:source <(ng completion script)
+
+
+# Define whence
+whence ()
+{ 
+    local INPUTARG=`/usr/bin/type -ap $1`;
+    if [ -x "${INPUTARG}" ]; then
+        type -a "$1";
+        /usr/bin/ls -al --color=auto "${INPUTARG}";
+    else
+        type -a "$1";
+    fi
+}
+
+## Calculate disk usage for all files in the current directory (including hidden files)
+dus ()
+{
+    local dir="${1:-.}" # Use argument 1, or the current directory if no argument is given
+    local dotglob_cmd=$(shopt -p dotglob) # save command to reset dotglob
+    
+    # Enable dotglob: this makes * also match files starting with a dot (hidden files).
+    shopt -s dotglob
+    
+    # Check if we are running in the current directory or a specific one
+    if [ "$dir" = "." ]; then
+        echo "Calculating disk usage for all files in current directory"
+        
+        du -hs *
+    else
+        echo "Calculating disk usage for all files in directory: $dir"
+        du -hs "$dir"/*
+    fi
+
+    # Restore dotglob to its original state
+    $dotglob_cmd
+}
+
+# find file in current directory hierarchy
+ffile()
+{
+    # Check if an argument was provided
+    if [ -z "$1" ]; then
+        echo "Error: Please provide a filename pattern." >&2
+        echo "Usage: ffile <pattern>   (a wildcard will be added in front)" >&2
+        echo "e.g. ffile IGP0967.* " >&2
+        return 1
+    fi
+
+    # Execute the find command
+    find -L . -name "*${1}"
+}
+
+# Define logout for  gnome shell
+logout ()
+{
+ 	DISPLAY=:0 gnome-session-quit --force
+}
+
+
+# Fix less for utf8
+export LESSCHARSET=utf-8
+
+# Alias clear
+cls ()
+{
+    clear;
+}
+
+# fix fastfetch
+ff ()
+{
+    fastfetch -l none;
+}
