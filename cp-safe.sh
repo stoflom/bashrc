@@ -1,6 +1,9 @@
 ##!/bin/bash
 
 # Function to copy a file with an incrementing number if a file with the same name exists
+# this differs from cp --backup=numbered in that the file extension is preserved:
+# filename.gpx -> filename(1).gpx etc.
+
 cp-safe() {
   local source_file="$1"
   local dest_dir="$2"
