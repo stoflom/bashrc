@@ -60,6 +60,33 @@ logout ()
 }
 
 
+# Function to copy a file with an incrementing number if a file with the same name exists
+cp-safe() {
+  local source_file="$1"
+  local dest_dir="$2"
+  local filename=$(basename -- "$source_file")
+  local name="${filename%.*}"
+  local ext="${filename##*.}"
+  
+  if [ "$filename" == "$ext" ]; then
+    ext=""
+  else
+    ext=".${ext}"
+  fi
+  
+  local i=0
+  local new_filename="${name}${ext}"
+  
+  # Find the next available number
+  while [ -e "${dest_dir}/${new_filename}" ]; do
+    i=$((i+1))
+    new_filename="${name}(${i})${ext}"
+  done
+  
+  # Copy the file with the new name
+  cp -v "$source_file" "${dest_dir}/${new_filename}"
+}
+
 # Fix less for utf8
 export LESSCHARSET=utf-8
 
