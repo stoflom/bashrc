@@ -17,11 +17,14 @@ whence ()
     if [[ -n "$cmd_path" ]]; then
         # Use a temporary variable to trace the links.
         local target_path="$cmd_path"
+        local cycle_count=0
+        local max_cycles=5
 
         # 4. Loop as long as the current path is a symbolic link.
         # The '-h' or '-L' test checks if a path exists and is a symbolic link.
-        while [[ -h "$target_path" ]] && [[ -e "$target_path" ]]; do
+        while [[ -h "$target_path" ]] && [[ -e "$target_path" ]] && [[ "$cycle_count" -lt "$max_cycles" ]]; do
             echo "-> is a link:"
+            cycle_count=$((cycle_count + 1))
             ls -ld --color=auto "$target_path"
 
             # Get the link's target. It might be a relative path.
@@ -38,6 +41,11 @@ whence ()
             # Resolve the target path. If it's not absolute, resolve it relative to the link's directory.
             [[ "$link_target" == /* ]] && target_path="$link_target" || target_path="$(dirname -- "$target_path")/$link_target"
         done
+
+        # Check if we exited due to reaching the cycle limit
+        if [[ "$cycle_count" -ge "$max_cycles" ]]; then
+            echo "-> Warning: Exceeded max link depth of $max_cycles. Possible circular link."
+        fi
 
         # 5. If the original command was a link, show the final target.
         # We know it was a link if the final path is different from the starting path.
