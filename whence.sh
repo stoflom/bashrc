@@ -15,21 +15,36 @@ whence ()
 
     # 3. If a path was found, analyze it for symbolic links
     if [[ -n "$cmd_path" ]]; then
-        local current_path="$cmd_path"
+        # Use a temporary variable to trace the links.
+        local target_path="$cmd_path"
 
-        # 4. Loop through the link chain until we find a non-link file
-        while [[ -L "$current_path" ]]; do
+        # 4. Loop as long as the current path is a symbolic link.
+        # The '-h' or '-L' test checks if a path exists and is a symbolic link.
+        while [[ -h "$target_path" ]] && [[ -e "$target_path" ]]; do
             echo "-> is a link:"
-            ls -ld --color=auto "$current_path"
-            current_path=$(readlink -f "$current_path")
-        fi
+            ls -ld --color=auto "$target_path"
 
-        # 5. Show the final target file if it was different from the starting command path
-        if [[ "$current_path" != "$cmd_path" ]]; then
+            # Get the link's target. It might be a relative path.
+            local link_target
+            link_target=$(readlink "$target_path")
+
+            # If readlink fails (e.g., on a malformed link), target_path could be empty.
+            # Break the loop to prevent errors.
+            if [[ -z "$link_target" ]]; then
+                echo "-> Error: Broken or unreadable symbolic link."
+                break
+            fi
+
+            # Resolve the target path. If it's not absolute, resolve it relative to the link's directory.
+            [[ "$link_target" == /* ]] && target_path="$link_target" || target_path="$(dirname -- "$target_path")/$link_target"
+        done
+
+        # 5. If the original command was a link, show the final target.
+        # We know it was a link if the final path is different from the starting path.
+        if [[ "$target_path" != "$cmd_path" ]]; then
             echo "-> final target:"
-            ls -l --color=auto "$current_path"
+            # Use 'ls -ld' to correctly display info for files OR directories.
+            ls -ld --color=auto "$target_path" || echo "-> Target not found (broken link chain)."
         fi
-    else
-        echo "-> Not found as an executable file in \$PATH."
     fi
 }
