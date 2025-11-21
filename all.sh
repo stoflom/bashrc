@@ -27,3 +27,13 @@ ff ()
 {
     fastfetch -l none;
 }
+
+gte ()
+{
+    /usr/bin/gnome-text-editor;
+}
+
+# shortcuts for disks to use: e.g. cd "$T7"      (note quotes "")
+export MECER="/run/media/stoflom/MecerExternal"
+export T7="/run/media/stoflom/T7 Shield"
+
