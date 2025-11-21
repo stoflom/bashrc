@@ -19,26 +19,29 @@ export LESSCHARSET=utf-8
 # Alias clear
 cls ()
 {
-    clear;
+    clear 
 }
 
 # fix fastfetch
 ff ()
 {
-    fastfetch -l none;
+    fastfetch -l none 
 }
 
+
+#Shortcuts for some Gnome apps
 gte ()
 {
-    /usr/bin/gnome-text-editor;
+    /usr/bin/gnome-text-editor "$@" & 
 }
 
 gsm ()
 {
-    /usr/bin/gnome-system-monitor;
+    /usr/bin/gnome-system-monitor & 
 }
 
 # shortcuts for disks to use: e.g. cd "$T7"      (note quotes "")
 export MECER="/run/media/stoflom/MecerExternal"
 export T7="/run/media/stoflom/T7 Shield"
+
 
