@@ -10,6 +10,7 @@ ffile()
         echo "If <dir> is empty, the current directory is used." >&2
         echo "e.g. ffile \"IGP0967.*\" /" >&2
         echo "e.g. ffile \"*.log\"" >&2
+        echo "e.g. ffile \"=IGP0967.txt\" (exact match)" >&2
         return 1
     fi
 
@@ -18,15 +19,24 @@ ffile()
     # The ${VAR:-default} syntax is a common, clean way to set a default value.
     local search_dir="${2:-$PWD}"
     
-    # 3. Define the search pattern
-    # We'll use the user's input, but ensure it starts with a wildcard
-    # for a "contains" search, if it doesn't already.
+    # 3. Validate the search directory exists
+    if [ ! -d "$search_dir" ]; then
+        echo "Error: Directory '$search_dir' does not exist." >&2
+        return 1
+    fi
+    
+    # 4. Define the search pattern
+    # Support exact matches with = prefix or contains searches
     local pattern="${1}"
-    if [[ "$pattern" != "*"* ]]; then
-        pattern="*${pattern}"
+    if [[ "$pattern" == "="* ]]; then
+        # Exact match - remove the = prefix
+        pattern="${pattern#=}"
+    elif [[ "$pattern" != *"*"* ]]; then
+        # No wildcards - make it a contains search
+        pattern="*${pattern}*"
     fi
 
-    # 4. Execute the find command
+    # 5. Execute the find command
     # -L follows symbolic links.
     # -name uses the wildcard pattern.
     echo "Searching for '$pattern' starting in '$search_dir'..." >&2
@@ -34,3 +44,4 @@ ffile()
 
     return 0 # Explicitly indicate success
 }
+
