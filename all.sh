@@ -34,6 +34,9 @@ gsm() {
 	/usr/bin/gnome-system-monitor &>/dev/null &
 }
 
+# Favorite editpr
+export EDITOR=fresh
+
 # shortcuts for disks to use: e.g. cd "$T7"      (note quotes "")
 export MECER="/run/media/stoflom/MecerExternal"
 export T7="/run/media/stoflom/T7Shield"
