@@ -12,8 +12,9 @@ logout() {
 	DISPLAY=:0 gnome-session-quit --force
 }
 
-# Fix less for utf8
+# Fix less for utf8 and colorfull
 export LESSCHARSET=utf-8
+alias less='less -R'
 
 # Alias clear
 cls() {
