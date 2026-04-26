@@ -45,4 +45,5 @@ export MECER="/run/media/stoflom/MecerExternal"
 export T7="/run/media/stoflom/T7Shield"
 
 #Fix some sillyness
-alias reboot='sudo systemctl reboot'
+alias reboot='sudo systemctl reboot -i'
+alias shutdown ='sudo systemctl poweroff -i'
