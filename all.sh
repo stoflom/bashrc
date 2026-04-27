@@ -47,3 +47,5 @@ export T7="/run/media/stoflom/T7Shield"
 #Fix some sillyness
 alias reboot='sudo systemctl reboot -i'
 alias shutdown='sudo systemctl poweroff -i'
+alias sleepoff='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'
+alias sleepon='sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target'
