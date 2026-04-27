@@ -46,4 +46,4 @@ export T7="/run/media/stoflom/T7Shield"
 
 #Fix some sillyness
 alias reboot='sudo systemctl reboot -i'
-alias shutdown ='sudo systemctl poweroff -i'
+alias shutdown='sudo systemctl poweroff -i'
