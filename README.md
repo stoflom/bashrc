@@ -37,7 +37,7 @@ This project uses a `Makefile` for easy installation and uninstallation of the s
 These functions become available in your terminal after installation.
 
 -   `all.sh`: The main file that sources all other function files.
--   `cp-safe`: A safe copy utility that renames the destination file with a numeric suffix (`#1`, `#2`, etc.) if it already exists, preserving the file extension.
+-   `cp_safe`: A safe copy utility that renames the destination file with a numeric suffix (`#1`, `#2`, etc.) if it already exists, preserving the file extension. Supports wildcards: `cp_safe * /dest/` or `cp_safe '*.txt' /dest/`.
 -   `ffile`: A simple function to find files by name in the current/given directory hierarchy.
 -   `whence`: An enhanced version of `type` that also shows `ls -al` output for the found executable.
 -   Other functions available from `all.sh`: `dus`, `logout`, `cls`, `ff` and gnome app shortcuts `gte`, `gsm`.

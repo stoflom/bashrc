@@ -8,7 +8,7 @@ SHELL := /bin/bash
 BASHRC_D_DIR := $(HOME)/.bashrc.d
 
 # Files containing functions to be sourced.
-LIB_FILES := all.sh whence.sh ffile.sh cp-safe.sh dus.sh
+LIB_FILES := all.sh whence.sh ffile.sh cp_safe.sh dus.sh
 
 # --- Targets ---
 
