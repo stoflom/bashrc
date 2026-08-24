@@ -4,7 +4,7 @@
 # this differs from cp --backup=numbered in that the file extension is preserved:
 # filename.gpx -> filename#1.gpx etc.
 
-cp_safe() {
+cps() {
   if [ "$#" -lt 2 ]; then
     echo "Usage: cp_safe <source_file(s)> <destination_dir>" >&2
     echo "  Supports wildcards: cp_safe '*.txt' /dest/ or cp_safe * /dest/" >&2

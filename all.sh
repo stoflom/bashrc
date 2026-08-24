@@ -3,7 +3,7 @@ if [[ -n "$BASH_SOURCE" ]]; then #
 	_ALL_SH_SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 	source "${_ALL_SH_SCRIPT_DIR}/whence.sh"
 	source "${_ALL_SH_SCRIPT_DIR}/ffile.sh"
-	source "${_ALL_SH_SCRIPT_DIR}/cp-safe.sh"
+	source "${_ALL_SH_SCRIPT_DIR}/cp_safe.sh"
 	source "${_ALL_SH_SCRIPT_DIR}/dus.sh"
 fi
 

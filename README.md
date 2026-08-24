@@ -23,7 +23,7 @@ This project uses a `Makefile` for easy installation and uninstallation of the s
     ```
     This will:
     -   Copy library files (e.g., `all.sh`, `whence`, `ffile`) to `~/.bashrc.d/`. These provide functions for your interactive shell.
- 
+
 2.  **Uninstall:** To remove all installed scripts, run:
     ```bash
     make uninstall
@@ -37,8 +37,11 @@ This project uses a `Makefile` for easy installation and uninstallation of the s
 These functions become available in your terminal after installation.
 
 -   `all.sh`: The main file that sources all other function files.
--   `cp_safe`: A safe copy utility that renames the destination file with a numeric suffix (`#1`, `#2`, etc.) if it already exists, preserving the file extension. Supports wildcards: `cp_safe * /dest/` or `cp_safe '*.txt' /dest/`.
+-   `cp_safe`: A safe copy utility that renames the destination file with a numeric suffix (`#1`, `#2`, etc.) if it already exists, preserving the file extension. Supports wildcards: `cp_safe * /dest/` or `cp_safe '*.txt' /dest/`. The command is loaded as `cps`.
 -   `ffile`: A simple function to find files by name in the current/given directory hierarchy.
 -   `whence`: An enhanced version of `type` that also shows `ls -al` output for the found executable.
 -   Other functions available from `all.sh`: `dus`, `logout`, `cls`, `ff` and gnome app shortcuts `gte`, `gsm`.
 
+### Old Age
+
+To re-enable old middle-button paste behaviour in a terminal: `gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true`
